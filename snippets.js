@@ -65,3 +65,24 @@ var del = function(name, content){
     mongoose.disconnect();
   });
 };
+
+//process.argv - an array containing command line arguments.
+//0 - 'node'
+//1 - nameOfJSFile
+//2 - n - additional arguments
+var main = function(){
+  if (process.argv[2] == 'create'){
+    create(process.argv[3], process.argv[4]);
+  }
+  else if (process.argv[2] == 'read'){
+    read(process.argv[3]);
+  }
+  else if (process.argv[2] == 'delete'){
+    del(process.argv[3]);
+  }
+  else {
+    console.error('Command not recognized');
+    db.close();
+  }
+};
+main();
