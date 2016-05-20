@@ -18,6 +18,8 @@ var create = function(name, content){
     name: name,
     content: content
   };
+  console.log(snippet);
+  debugger;
   Snippet.create(snippet, function(err, snippet){
     if (err || !snippet){
       console.error("Could not create snippet", name);
@@ -70,6 +72,8 @@ var del = function(name, content){
 //0 - 'node'
 //1 - nameOfJSFile
 //2 - n - additional arguments
+
+//complains that Snippet is undefined.
 var main = function(){
   if (process.argv[2] == 'create'){
     create(process.argv[3], process.argv[4]);
@@ -82,7 +86,8 @@ var main = function(){
   }
   else {
     console.error('Command not recognized');
-    db.close();
+    mongoose.disconnect();
   }
+  main();
 };
-main();
+//main();
